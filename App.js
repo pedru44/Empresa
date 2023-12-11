@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import empresaStack from './screens/empresa/empresaStack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { PaperProvider } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <PaperProvider>
+        <NavigationContainer>
+          <Tab.Navigator>
+          <Tab.Screen
+        name="Empresa"
+        component={empresaStack}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="account-group-outline" size={26} />
+          ),
+        }}
+      />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
